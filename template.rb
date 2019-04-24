@@ -306,4 +306,10 @@ after_bundle do
   say "cd #{app_name} - Switch to your new app's directory."
   say "foreman start - Run Rails, sidekiq, and webpack-dev-server."
   say
+  say "Clean Up", :red
+  say "rails db:drop"
+  say "spring stop"
+  say "cd .."
+  say "rm -rf myapp"
+  say
 end
