@@ -305,4 +305,5 @@ after_bundle do
   say "To get started with your new app:", :green
   say "cd #{app_name} - Switch to your new app's directory."
   say "foreman start - Run Rails, sidekiq, and webpack-dev-server."
+  say
 end
