@@ -64,6 +64,9 @@ def add_gems
   gem 'guard-livereload', '~> 2.5', group: [:development, :test], require: false
   gem 'sentry-raven', group: :production
   
+  # fix error with administrate
+  gem 'pundit', '~> 1.1.0'
+  
   if rails_5?
     gsub_file "Gemfile", /gem 'sqlite3'/, "gem 'sqlite3', '~> 1.3.0'"
     gem 'webpacker', '~> 4.0.1'
