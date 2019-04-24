@@ -285,7 +285,11 @@ after_bundle do
   
   rails_command "haml:replace_erbs"
   run 'guard init livereload'
-  environment 'config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload', env: 'development' 
+  environment 'config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload', env: 'development'
+  gsub_file "config/initializers/devise.rb",
+    /# config.remember_for = 2.weeks/,
+    config.remember_for = 10.years
+  inject_into_file("app/models/user.rb", "def remember_me; true; end", before: "end")
 
   # Migrations must be done before this
   add_administrate
