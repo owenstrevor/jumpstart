@@ -287,7 +287,7 @@ after_bundle do
   run 'guard init livereload'
   environment 'config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload', env: 'development'
   gsub_file "config/initializers/devise.rb", /# config.remember_for = 2.weeks/, "config.remember_for = 10.years"
-  inject_into_file("app/models/user.rb", "def remember_me; true; end", after: "class User < ApplicationRecord\n")
+  inject_into_file("app/models/user.rb", "\tdef remember_me; true; end\n", after: "class User < ApplicationRecord\n")
 
   # Migrations must be done before this
   add_administrate
