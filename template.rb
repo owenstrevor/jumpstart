@@ -54,7 +54,16 @@ def add_gems
   gem 'sidekiq', '~> 5.2', '>= 5.2.5'
   gem 'sitemap_generator', '~> 6.0', '>= 6.0.1'
   gem 'whenever', require: false
-
+  
+  gem 'devise-i18n'
+  gem 'haml-rails'
+  gem "erb2haml", group: :development
+  gem "bootstrap_form", ">= 4.2.0"
+  gem 'inline_svg'
+  gem 'rack-livereload', group: :development
+  gem 'guard-livereload', '~> 2.5', group: [:development, :test], require: false
+  gem 'sentry-raven', group: :production
+  
   if rails_5?
     gsub_file "Gemfile", /gem 'sqlite3'/, "gem 'sqlite3', '~> 1.3.0'"
     gem 'webpacker', '~> 4.0.1'
@@ -270,6 +279,10 @@ after_bundle do
   # Migrate
   rails_command "db:create"
   rails_command "db:migrate"
+  
+  rails_command "haml:replace_erbs"
+  run 'guard init livereload'
+  environment 'config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload', env: 'development' 
 
   # Migrations must be done before this
   add_administrate
