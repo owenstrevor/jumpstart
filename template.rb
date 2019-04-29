@@ -56,7 +56,7 @@ def add_gems
   gem 'whenever', require: false
   
   gem 'devise-i18n'
-  gem 'haml-rails'
+  gem 'hamlit'
   gem "erb2haml", group: :development
   gem "bootstrap_form", ">= 4.2.0"
   gem 'inline_svg'
